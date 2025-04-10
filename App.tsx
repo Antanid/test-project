@@ -1,7 +1,9 @@
+import { Toast } from '@/components/toast'
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider'
 import { useColorScheme } from '@/components/useColorScheme'
 import { Routes } from '@/routes'
 import { useFonts } from 'expo-font'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import './global.scss'
 
@@ -18,7 +20,10 @@ function RootLayout() {
 
   return (
     <GluestackUIProvider mode={colorScheme === 'dark' ? 'dark' : 'light'}>
-      <Routes />
+      <SafeAreaProvider>
+        <Routes />
+        <Toast />
+      </SafeAreaProvider>
     </GluestackUIProvider>
   )
 }

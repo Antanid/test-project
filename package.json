@@ -11,7 +11,8 @@
     "lint": "tsc --noEmit && eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "lint:fix": "npm run lint --fix",
     "prettier": "prettier --write .",
-    "beautify": "npm run prettier && npm run lint:fix"
+    "beautify": "npm run prettier && npm run lint:fix",
+    "postinstall": "patch-package"
   },
   "jest": {
     "preset": "jest-expo"
@@ -53,6 +54,7 @@
     "@react-navigation/native": "^7.0.14",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "babel-plugin-module-resolver": "^5.0.2",
+    "clsx": "^2.1.1",
     "eslint-config-universe": "^14.0.0",
     "eslint-plugin-unused-imports": "^4.1.4",
     "expo": "~52.0.25",
@@ -80,9 +82,11 @@
     "react-native-sass-transformer": "^3.0.0",
     "react-native-screens": "~4.4.0",
     "react-native-svg": "^15.2.0",
+    "react-native-toast-message": "^2.2.1",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5",
     "sass": "^1.86.3",
+    "tailwind-merge": "^3.2.0",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {

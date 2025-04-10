@@ -173,7 +173,7 @@ type IInputFieldProps = React.ComponentProps<typeof UIInput.Input> &
   VariantProps<typeof inputFieldStyle> & { className?: string }
 
 const InputField = React.forwardRef<React.ElementRef<typeof UIInput.Input>, IInputFieldProps>(
-  ({ className, ...props }, ref) => {
+  ({ className, onChange, ...props }, ref) => {
     const { variant: parentVariant, size: parentSize } = useStyleContext(SCOPE)
 
     return (

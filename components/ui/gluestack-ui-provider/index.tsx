@@ -30,7 +30,6 @@ export function GluestackUIProvider({
         { flex: 1, height: '100%', width: '100%' },
         props.style,
       ]}
-
     >
       <OverlayProvider>
         <ToastProvider>{props.children}</ToastProvider>

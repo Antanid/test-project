@@ -1,86 +1,33 @@
-import { Box } from '@/components/ui/box'
 import { Button } from '@/components/ui/button'
-import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '@/components/ui/checkbox'
-import { CheckIcon, Icon, TrashIcon } from '@/components/ui/icon'
 import { Text } from '@/components/ui/text'
+import { GroceryCard } from '@/layout/grocery'
 import { StackParamsList } from '@/routes'
+import { showToast } from '@/utils/toast'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { useState } from 'react'
-import { SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native'
+import { useEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, SafeAreaView, View } from 'react-native'
+import colors from 'tailwindcss/colors'
 
-type GroceryCardType = {
-  title: string
-  price: number
-  id: string
-}
-
-const GroceryCard = ({
-  item,
-  onDelete,
-  isChecked,
-  onCheckChange,
-}: {
-  onDelete: (id: string) => void
-  isChecked: boolean
-  onCheckChange: (id: string, checked: boolean) => void
-  item: GroceryCardType
-}) => {
-  return (
-    <Box className="border-w-1 m-2 flex-row items-center justify-between gap-x-2 rounded border border-outline-700 p-4">
-      <View className="w-[70%] gap-y-2">
-        <Text className={`font-semibold text-neutral-800 ${isChecked ? 'line-through' : ''}`}>
-          {item.title}
-        </Text>
-        <Text className={`font-medium text-lime-700 ${isChecked ? 'line-through' : ''}`}>
-          $ {item.price}
-        </Text>
-      </View>
-      <View className="items-end justify-end">
-        <TouchableOpacity onPress={() => onDelete(item.id)}>
-          <Icon as={TrashIcon} className="m-2 h-5 w-5 text-typography-500" />
-        </TouchableOpacity>
-        <Checkbox
-          value={isChecked ? 'checked' : ''}
-          size="md"
-          isInvalid={false}
-          isDisabled={false}
-          onChange={checked => onCheckChange(item.id, checked)}
-        >
-          <CheckboxIndicator>
-            <CheckboxIcon as={CheckIcon} />
-          </CheckboxIndicator>
-          <CheckboxLabel>Check</CheckboxLabel>
-        </Checkbox>
-      </View>
-    </Box>
-  )
-}
+import { GroceryCardType } from './type'
 
 export const HomeScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>()
 
-  const data = [
-    {
-      title: 'first',
-      price: 213,
-      id: '1',
-    },
-    {
-      title: 'second',
-      price: 213,
-      id: '2',
-    },
-    {
-      title: 'third',
-      price: 213,
-      id: '3',
-    },
-  ]
   const [groceryList, setGroceryList] = useState<GroceryCardType[]>(data)
   const [completedItems, setCompletedItems] = useState<Set<string>>(new Set())
+  const [loading, setLoading] = useState<boolean>(true)
 
-  console.log(completedItems, 'completedItems')
+  useEffect(() => {
+    const fetchData = async () => {
+      setTimeout(() => {
+        setGroceryList(data)
+        setLoading(false)
+      }, 1500)
+    }
+
+    fetchData()
+  }, [])
 
   const handleDelete = (id: string) => {
     setGroceryList(prevList => prevList.filter(item => item.id !== id))
@@ -88,6 +35,11 @@ export const HomeScreen = () => {
       const newCompletedItems = new Set(prevCompletedItems)
       newCompletedItems.delete(id)
       return newCompletedItems
+    })
+
+    showToast({
+      type: 'success',
+      text1: 'The item was removed from your grocery list.',
     })
   }
 
@@ -103,26 +55,60 @@ export const HomeScreen = () => {
     })
   }
 
+  const navigateToGroceryEdit = (item: GroceryCardType) => {
+    navigation.navigate('GroceryEdit', { grocery: item })
+  }
+
+  function renderItem({ item }: { item: GroceryCardType }) {
+    return (
+      <GroceryCard
+        item={item}
+        onDelete={handleDelete}
+        isChecked={completedItems.has(item.id)}
+        onCheckChange={handleCheckChange}
+        onNavigate={navigateToGroceryEdit}
+        key={item.id}
+      />
+    )
+  }
+
+  if (loading) {
+    return (
+      <View className="w-full flex-1 items-center justify-center">
+        <ActivityIndicator size="large" color={colors.green['400']} />
+      </View>
+    )
+  }
+
   return (
     <SafeAreaView className="flex-1">
-      <ScrollView className="px-4" contentContainerStyle={{ flexGrow: 1 }}>
-        <View>
-          {groceryList.map(item => (
-            <GroceryCard
-              item={item}
-              onDelete={handleDelete}
-              isChecked={completedItems.has(item.id)}
-              onCheckChange={handleCheckChange}
-              key={item.id}
-            />
-          ))}
-        </View>
-      </ScrollView>
-      <View className="mb-10 px-4">
-        <Button onPress={() => navigation.navigate('GroceryEdit')}>
+      <View className="mt-4 flex-1 px-4">
+        <FlatList data={groceryList} renderItem={renderItem} />
+      </View>
+
+      <View className="mb-8 px-4">
+        <Button size="lg" onPress={() => navigation.navigate('GroceryEdit', {})} disabled={loading}>
           <Text className="text-white">New item</Text>
         </Button>
       </View>
     </SafeAreaView>
   )
 }
+
+const data = [
+  {
+    title: 'first',
+    price: '213',
+    id: '1',
+  },
+  {
+    title: 'second',
+    price: '213',
+    id: '2',
+  },
+  {
+    title: 'third',
+    price: '213',
+    id: '3',
+  },
+]
