@@ -3,7 +3,7 @@ import { useColorScheme } from '@/components/useColorScheme'
 import { Routes } from '@/routes'
 import { useFonts } from 'expo-font'
 
-import './global.css'
+import './global.scss'
 
 function RootLayout() {
   const [loaded] = useFonts({
