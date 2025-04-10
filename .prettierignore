@@ -1,0 +1,9 @@
+isolate
+node_modules
+.github
+.idea
+.vscode
+diff_output
+.expo
+package-lock.json
+components/ui

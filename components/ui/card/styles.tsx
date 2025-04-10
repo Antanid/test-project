@@ -1,6 +1,7 @@
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
-import { isWeb } from '@gluestack-ui/nativewind-utils/IsWeb';
-const baseStyle = isWeb ? 'flex flex-col relative z-0' : '';
+import { isWeb } from '@gluestack-ui/nativewind-utils/IsWeb'
+import { tva } from '@gluestack-ui/nativewind-utils/tva'
+
+const baseStyle = isWeb ? 'flex flex-col relative z-0' : ''
 
 export const cardStyle = tva({
   base: baseStyle,
@@ -17,4 +18,4 @@ export const cardStyle = tva({
       filled: 'bg-background-50',
     },
   },
-});
+})

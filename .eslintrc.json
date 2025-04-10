@@ -1,0 +1,31 @@
+{
+  "plugins": ["@typescript-eslint", "import", "unused-imports", "prettier"],
+  "extends": [
+    "universe",
+    "universe/native",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:import/typescript"
+  ],
+  "ignorePatterns": ["node_modules", ".expo", ".vscode", ".idea"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "import/order": 0,
+    "react-native/no-inline-styles": 0,
+    "import/namespace": 0,
+    "import/export": 0,
+    "no-duplicate-imports": "warn",
+    "@typescript-eslint/no-require-imports": "off",
+    "@typescript-eslint/array-type": "off",
+    "import/no-cycle": ["warn", { "maxDepth": 1 }]
+  },
+  "env": {
+    "node": true
+  }
+}

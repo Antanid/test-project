@@ -1,0 +1,9 @@
+isolate
+node_modules
+.github
+.idea
+.vscode
+.expo
+expo-env.d.ts
+package-lock.json
+components/ui

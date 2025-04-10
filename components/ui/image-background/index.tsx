@@ -1,9 +1,10 @@
-'use client';
-import { ImageBackground as RNImageBackground } from 'react-native';
-import React from 'react';
-import { tva } from '@gluestack-ui/nativewind-utils/tva';
+'use client'
 
-const imageBackgroundStyle = tva({});
+import { tva } from '@gluestack-ui/nativewind-utils/tva'
+import React from 'react'
+import { ImageBackground as RNImageBackground } from 'react-native'
+
+const imageBackgroundStyle = tva({})
 
 export const ImageBackground = React.forwardRef<
   React.ElementRef<typeof RNImageBackground>,
@@ -17,5 +18,5 @@ export const ImageBackground = React.forwardRef<
       {...props}
       ref={ref}
     />
-  );
-});
+  )
+})
