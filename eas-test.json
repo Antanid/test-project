@@ -1,0 +1,33 @@
+{
+  "cli": {
+    "version": ">= 3.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "development",
+        "API_URL_IOS": "http://localhost:3001",
+        "API_URL_ANDROID": "http://10.0.2.2:3001"
+      },
+      "ios": {
+        "simulator": true
+      }
+    },
+    "staging": {
+      "env": {
+        "APP_ENV": "staging",
+        "API_URL_IOS": "https://staging.api.com",
+        "API_URL_ANDROID": "https://staging.api.com"
+      }
+    },
+    "production": {
+      "env": {
+        "APP_ENV": "production",
+        "API_URL_IOS": "https://api.com",
+        "API_URL_ANDROID": "https://api.com"
+      }
+    }
+  }
+}
