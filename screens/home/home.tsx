@@ -81,7 +81,7 @@ export const HomeScreen = () => {
       setRefreshLoading(true)
       setTimeout(() => {
         setRefreshLoading(false)
-      }, 500)
+      }, 1000)
     }
   }, [isRefetching])
 
