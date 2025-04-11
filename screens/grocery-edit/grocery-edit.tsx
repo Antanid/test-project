@@ -119,6 +119,16 @@ export const GroceryEdit = () => {
           label="Price"
           placeholder="Enter price here..."
           required
+          rules={{
+            max: {
+              value: 1_000_000,
+              message: 'The value must not exceed 1,000,000',
+            },
+            pattern: {
+              value: /^\d+$/,
+              message: 'Only numbers are allowed',
+            },
+          }}
         />
       </ScrollView>
 

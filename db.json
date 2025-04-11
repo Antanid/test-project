@@ -9,7 +9,7 @@
     {
       "id": "2",
       "title": "second",
-      "price": "1567",
+      "price": "999999",
       "completed": true
     },
     {
@@ -21,7 +21,7 @@
     {
       "id": "4",
       "title": "fourth",
-      "price": "1123",
+      "price": "123456",
       "completed": false
     },
     {
@@ -159,7 +159,7 @@
     {
       "id": "27",
       "title": "twenty-seventh",
-      "price": "1523",
+      "price": "1000000",
       "completed": true
     },
     {

@@ -20,6 +20,10 @@ const fetchGroceries = async ({
   pageParam: number
   limit: number
 }): Promise<Grocery[]> => {
+  // Add delay only when fetching next pages to ensure loader is visible
+  if (pageParam > 1) {
+    await new Promise(resolve => setTimeout(resolve, 1000))
+  }
   const response = await axios.get(`${API_URL}/groceries?_limit=${limit}&_page=${pageParam}`)
   return response.data
 }

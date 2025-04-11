@@ -125,11 +125,13 @@ export const HomeScreen = () => {
             data={groceryList}
             renderItem={renderItem}
             onEndReached={handleEndReached}
-            onEndReachedThreshold={0.1}
+            onEndReachedThreshold={0.5}
             refreshing={isFetchingNextPage}
             ListFooterComponent={
               isFetchingNextPage && hasNextPage ? (
-                <ActivityIndicator size="large" color={colors.green['400']} />
+                <View className="my-2">
+                  <ActivityIndicator size="small" color={colors.green['400']} />
+                </View>
               ) : null
             }
             refreshControl={
@@ -149,7 +151,7 @@ export const HomeScreen = () => {
             onPress={() => navigation.navigate('GroceryEdit', {})}
             disabled={finalLoading}
           >
-            <Text className="text-white">New item</Text>
+            <Text className="text-white">New grocery</Text>
           </Button>
         </View>
       </Animated.View>
