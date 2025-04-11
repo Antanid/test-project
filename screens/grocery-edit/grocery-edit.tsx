@@ -20,7 +20,6 @@ type GroceryFormType = {
 }
 
 export const GroceryEdit = () => {
-  // States and hooks
   const opacity = useSharedValue(0)
   const [finalLoading, setFinalLoading] = useState(true)
 

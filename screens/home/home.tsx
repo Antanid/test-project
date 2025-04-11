@@ -51,6 +51,7 @@ export const HomeScreen = () => {
   useEffect(() => {
     if (data) {
       setGroceryList(data?.pages)
+      // Simulate a delay to show loading spinner
       setTimeout(() => {
         setFinalLoading(false)
       }, 500)
@@ -105,6 +106,11 @@ export const HomeScreen = () => {
             onEndReached={handleEndReached}
             onEndReachedThreshold={0.1}
             refreshing={isFetching}
+            ListFooterComponent={
+              isFetching && hasNextPage ? (
+                <ActivityIndicator size="large" color={colors.green['400']} />
+              ) : null
+            }
           />
         </View>
 

@@ -13,16 +13,22 @@ export type Grocery = {
 }
 
 // Fetch groceries from the server
-const fetchGroceries = async ({ pageParam }: { pageParam: number }): Promise<Grocery[]> => {
-  const response = await axios.get(`${API_URL}/groceries?_limit=10&_page=${pageParam}`)
+const fetchGroceries = async ({
+  pageParam,
+  limit,
+}: {
+  pageParam: number
+  limit: number
+}): Promise<Grocery[]> => {
+  const response = await axios.get(`${API_URL}/groceries?_limit=${limit}&_page=${pageParam}`)
   return response.data
 }
 
 // Hook to fetch groceries data using React Query
-export const useGroceries = () => {
+export const useGroceries = (limit: number = 10) => {
   return useInfiniteQuery({
     queryKey: ['groceries'],
-    queryFn: fetchGroceries,
+    queryFn: ({ pageParam }: { pageParam: number }) => fetchGroceries({ pageParam, limit }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
       if (lastPage.length === 10) {
