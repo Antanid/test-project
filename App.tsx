@@ -4,6 +4,7 @@ import { useColorScheme } from '@/components/useColorScheme'
 import { Routes } from '@/routes'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useFonts } from 'expo-font'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import './global.scss'
@@ -22,14 +23,16 @@ function RootLayout() {
   }
 
   return (
-    <GluestackUIProvider mode={colorScheme === 'dark' ? 'dark' : 'light'}>
-      <QueryClientProvider client={queryClient}>
-        <SafeAreaProvider>
-          <Routes />
-          <Toast />
-        </SafeAreaProvider>
-      </QueryClientProvider>
-    </GluestackUIProvider>
+    <GestureHandlerRootView>
+      <GluestackUIProvider mode={colorScheme === 'dark' ? 'dark' : 'light'}>
+        <QueryClientProvider client={queryClient}>
+          <SafeAreaProvider>
+            <Routes />
+            <Toast />
+          </SafeAreaProvider>
+        </QueryClientProvider>
+      </GluestackUIProvider>
+    </GestureHandlerRootView>
   )
 }
 

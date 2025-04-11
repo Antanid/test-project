@@ -33,7 +33,7 @@ export const GroceryCard = ({
         >
           {item.title}
         </Text>
-        <Text className="font-medium text-lime-700">$ {item.price}</Text>
+        <Text className="font-medium text-green-700">$ {item.price}</Text>
       </View>
       <View className="items-end justify-end">
         <TouchableOpacity onPress={() => onDelete(item.id)}>

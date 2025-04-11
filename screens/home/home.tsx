@@ -13,6 +13,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { FlashList } from '@shopify/flash-list'
 import { useEffect, useState } from 'react'
 import { ActivityIndicator, SafeAreaView, View } from 'react-native'
+import { RefreshControl } from 'react-native-gesture-handler'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import colors from 'tailwindcss/colors'
 
@@ -21,12 +22,22 @@ export const HomeScreen = () => {
 
   const opacity = useSharedValue(0)
 
-  const { data, isFetching, fetchNextPage, hasNextPage } = useGroceries()
+  const {
+    data,
+    isFetching,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch,
+    isRefetching,
+  } = useGroceries()
+
   const updateCompletedMutation = useUpdateGroceryCompleted()
   const deleteGroceryMutation = useDeleteGrocery()
 
   const [groceryList, setGroceryList] = useState<Grocery[]>([])
   const [finalLoading, setFinalLoading] = useState(true)
+  const [refreshLoading, setRefreshLoading] = useState(false)
 
   const handleDelete = (id: string) => {
     try {
@@ -63,6 +74,16 @@ export const HomeScreen = () => {
       opacity.value = withTiming(1, { duration: 300 })
     }
   }, [finalLoading])
+
+  useEffect(() => {
+    if (isRefetching) {
+      // Simulate a delay to show loading spinner
+      setRefreshLoading(true)
+      setTimeout(() => {
+        setRefreshLoading(false)
+      }, 500)
+    }
+  }, [isRefetching])
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -105,11 +126,19 @@ export const HomeScreen = () => {
             renderItem={renderItem}
             onEndReached={handleEndReached}
             onEndReachedThreshold={0.1}
-            refreshing={isFetching}
+            refreshing={isFetchingNextPage}
             ListFooterComponent={
-              isFetching && hasNextPage ? (
+              isFetchingNextPage && hasNextPage ? (
                 <ActivityIndicator size="large" color={colors.green['400']} />
               ) : null
+            }
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshLoading}
+                onRefresh={refetch}
+                tintColor={colors.green[200]}
+                colors={[colors.green[200]]}
+              />
             }
           />
         </View>

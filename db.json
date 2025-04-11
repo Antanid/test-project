@@ -2,15 +2,15 @@
   "groceries": [
     {
       "id": "1",
-      "title": "first",
-      "price": "213",
-      "completed": false
+      "title": "first. 111111",
+      "price": "11111",
+      "completed": true
     },
     {
       "id": "2",
       "title": "second",
       "price": "1567",
-      "completed": false
+      "completed": true
     },
     {
       "id": "3",
@@ -184,6 +184,12 @@
       "id": "3548727a-6057-4a32-b213-fdf941a86cd2",
       "title": "31",
       "price": "33311221",
+      "completed": true
+    },
+    {
+      "id": "5c1f957e-fe97-4741-8788-201ffdba7f1b",
+      "title": "Last item",
+      "price": "324234445433333",
       "completed": false
     }
   ]
