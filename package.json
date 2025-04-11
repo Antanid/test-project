@@ -12,7 +12,8 @@
     "lint:fix": "npm run lint --fix",
     "prettier": "prettier --write .",
     "beautify": "npm run prettier && npm run lint:fix",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "json-server": "npx json-server --watch db.json --port 3001"
   },
   "jest": {
     "preset": "jest-expo"
@@ -53,7 +54,9 @@
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "@shopify/flash-list": "^1.8.0",
+    "@tanstack/react-query": "^5.72.2",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "axios": "^1.8.4",
     "babel-plugin-module-resolver": "^5.0.2",
     "clsx": "^2.1.1",
     "eslint-config-universe": "^14.0.0",
@@ -70,6 +73,7 @@
     "expo-symbols": "~0.2.1",
     "expo-system-ui": "~4.0.7",
     "expo-web-browser": "~14.0.2",
+    "json-server": "^1.0.0-beta.3",
     "nativewind": "^4.1.23",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "react": "18.3.1",
@@ -84,6 +88,7 @@
     "react-native-screens": "~4.4.0",
     "react-native-svg": "^15.2.0",
     "react-native-toast-message": "^2.2.1",
+    "react-native-uuid": "^2.0.3",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5",
     "sass": "^1.86.3",

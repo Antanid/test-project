@@ -2,15 +2,15 @@ import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '@/comp
 import { CheckIcon, Icon, TrashIcon } from '@/components/ui/icon'
 import { Text } from '@/components/ui/text'
 import { cn } from '@/constants/lib/utils'
-import { GroceryCardType } from '@/screens/home'
+import { Grocery } from '@/hooks/useGroceries'
 import { TouchableOpacity, View } from 'react-native'
 
 type GroceryCardProps = {
   onDelete: (id: string) => void
   isChecked: boolean
   onCheckChange: (id: string, checked: boolean) => void
-  item: GroceryCardType
-  onNavigate: (item: GroceryCardType) => void
+  item: Grocery
+  onNavigate: (item: Grocery) => void
 }
 
 export const GroceryCard = ({
@@ -40,7 +40,8 @@ export const GroceryCard = ({
           <Icon as={TrashIcon} className="m-2 h-5 w-5 text-typography-500" />
         </TouchableOpacity>
         <Checkbox
-          value={isChecked ? 'checked' : ''}
+          isChecked={isChecked}
+          value=""
           size="md"
           isInvalid={false}
           isDisabled={false}

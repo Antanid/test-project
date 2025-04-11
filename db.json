@@ -1,0 +1,22 @@
+{
+  "groceries": [
+    {
+      "id": "1",
+      "title": "first",
+      "price": "213",
+      "completed": true
+    },
+    {
+      "id": "40261405-cca6-4cdd-9a4b-6b6ca3574181",
+      "title": "123131",
+      "price": "3213",
+      "completed": true
+    },
+    {
+      "id": "95d16374-963a-4a35-9371-08a1cd5d3c78",
+      "title": "2311111",
+      "price": "2",
+      "completed": true
+    }
+  ]
+}

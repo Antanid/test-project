@@ -1,5 +1,6 @@
+import { Grocery } from '@/hooks/useGroceries'
 import { GroceryEdit } from '@/screens/grocery-edit'
-import { GroceryCardType, HomeScreen } from '@/screens/home'
+import { HomeScreen } from '@/screens/home'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
@@ -23,5 +24,5 @@ export const Routes = () => {
 
 export type StackParamsList = {
   HomeScreen: undefined
-  GroceryEdit: { grocery?: GroceryCardType }
+  GroceryEdit: { grocery?: Grocery }
 }

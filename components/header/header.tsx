@@ -20,7 +20,7 @@ export const Header = ({ label }: HeaderProps) => {
       <View className="flex flex-row items-center gap-x-5">
         <TouchableOpacity
           className="bg-button-nav-fill ml-4 mr-0 h-[28px] w-[28px] items-center justify-center rounded-full"
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate('HomeScreen')}
         >
           <Icon as={ArrowLeftIcon} className="h-5 w-5 text-typography-500" />
         </TouchableOpacity>
