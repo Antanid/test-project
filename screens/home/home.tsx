@@ -16,16 +16,12 @@ import { ActivityIndicator, SafeAreaView, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import colors from 'tailwindcss/colors'
 
-// const PAGE_LIMIT = 10
-
 export const HomeScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>()
 
   const opacity = useSharedValue(0)
 
-  const [page, setPage] = useState(2)
-
-  const { data, isFetching } = useGroceries()
+  const { data, isFetching, fetchNextPage, hasNextPage } = useGroceries()
   const updateCompletedMutation = useUpdateGroceryCompleted()
   const deleteGroceryMutation = useDeleteGrocery()
 
@@ -54,7 +50,7 @@ export const HomeScreen = () => {
 
   useEffect(() => {
     if (data) {
-      setGroceryList(data)
+      setGroceryList(data?.pages)
       setTimeout(() => {
         setFinalLoading(false)
       }, 500)
@@ -84,10 +80,9 @@ export const HomeScreen = () => {
     )
   }
 
-  const handleEndReached = () => {
-    if (!isFetching) {
-      setPage(prevPage => prevPage + 1)
-      console.log('Loading next page', page + 1)
+  const handleEndReached = async () => {
+    if (!isFetching && hasNextPage) {
+      await fetchNextPage()
     }
   }
 

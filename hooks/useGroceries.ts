@@ -1,9 +1,9 @@
 import { isIOS } from '@/core/device'
 import { showToast } from '@/utils/toast'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-const BASE_URL = isIOS ? 'http://localhost:3001' : 'http://10.0.2.2:3001'
+const API_URL = isIOS ? 'http://localhost:3001' : 'http://10.0.2.2:3001'
 
 export type Grocery = {
   id: string
@@ -13,25 +13,37 @@ export type Grocery = {
 }
 
 // Fetch groceries from the server
-const fetchGroceries = async (): Promise<Grocery[]> => {
-  const response = await axios.get(`${BASE_URL}/groceries`)
+const fetchGroceries = async ({ pageParam }: { pageParam: number }): Promise<Grocery[]> => {
+  const response = await axios.get(`${API_URL}/groceries?_limit=10&_page=${pageParam}`)
   return response.data
 }
 
-// Custom hook to fetch groceries data using React Query
-export const useGroceries = () =>
-  useQuery({
+// Hook to fetch groceries data using React Query
+export const useGroceries = () => {
+  return useInfiniteQuery({
     queryKey: ['groceries'],
     queryFn: fetchGroceries,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage.length === 10) {
+        return pages.length + 1
+      }
+      return undefined
+    },
+    select: data => {
+      const allGroceries = data.pages.flat()
+      return { ...data, pages: allGroceries }
+    },
   })
+}
 
-// Custom hook to update grocery item completion status
+// Hook to update grocery item completion status
 export const useUpdateGroceryCompleted = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: async ({ id, completed }: { id: string; completed: boolean }) => {
-      await axios.patch(`${BASE_URL}/groceries/${id}`, { completed })
+      await axios.patch(`${API_URL}/groceries/${id}`, { completed })
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['groceries'] })
@@ -39,13 +51,13 @@ export const useUpdateGroceryCompleted = () => {
   })
 }
 
-// Custom hook to delete a grocery item
+// Hook to delete a grocery item
 export const useDeleteGrocery = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: async (id: string) => {
-      await axios.delete(`${BASE_URL}/groceries/${id}`)
+      await axios.delete(`${API_URL}/groceries/${id}`)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['groceries'] })
@@ -64,13 +76,13 @@ export const useDeleteGrocery = () => {
   })
 }
 
-// Custom hook to add a new grocery item
+// Hook to add a new grocery item
 export const useAddGrocery = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: async (newGrocery: Grocery) => {
-      await axios.post(`${BASE_URL}/groceries`, newGrocery)
+      await axios.post(`${API_URL}/groceries`, newGrocery)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['groceries'] })
@@ -89,13 +101,13 @@ export const useAddGrocery = () => {
   })
 }
 
-// Custom hook to update an existing grocery item
+// Hook to update an existing grocery item
 export const useUpdateGrocery = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: async ({ id, updatedData }: { id: string; updatedData: Partial<Grocery> }) => {
-      await axios.patch(`${BASE_URL}/groceries/${id}`, updatedData)
+      await axios.patch(`${API_URL}/groceries/${id}`, updatedData)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['groceries'] })
@@ -118,7 +130,7 @@ export const useGroceryById = (id: string | undefined) =>
   useQuery<Grocery, Error>({
     queryKey: ['grocery', id],
     queryFn: async () => {
-      const response = await axios.get(`${BASE_URL}/groceries/${id}`)
+      const response = await axios.get(`${API_URL}/groceries/${id}`)
       return response.data
     },
     enabled: !!id,
