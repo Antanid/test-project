@@ -5,8 +5,9 @@ import { StackParamsList } from '@/routes'
 import { showToast } from '@/utils/toast'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { FlashList } from '@shopify/flash-list'
 import { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, SafeAreaView, View } from 'react-native'
+import { ActivityIndicator, SafeAreaView, View } from 'react-native'
 import colors from 'tailwindcss/colors'
 
 import { GroceryCardType } from './type'
@@ -83,7 +84,7 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView className="flex-1">
       <View className="mt-4 flex-1 px-4">
-        <FlatList data={groceryList} renderItem={renderItem} />
+        <FlashList estimatedItemSize={96} data={groceryList} renderItem={renderItem} />
       </View>
 
       <View className="mb-8 px-4">
