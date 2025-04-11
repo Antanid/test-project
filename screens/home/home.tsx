@@ -16,12 +16,16 @@ import { ActivityIndicator, SafeAreaView, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import colors from 'tailwindcss/colors'
 
+// const PAGE_LIMIT = 10
+
 export const HomeScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParamsList>>()
 
   const opacity = useSharedValue(0)
 
-  const { data: groceryListTest } = useGroceries()
+  const [page, setPage] = useState(2)
+
+  const { data, isFetching } = useGroceries()
   const updateCompletedMutation = useUpdateGroceryCompleted()
   const deleteGroceryMutation = useDeleteGrocery()
 
@@ -44,18 +48,18 @@ export const HomeScreen = () => {
     }
   }
 
-  const navigateToGroceryEdit = (item: Grocery) => {
-    navigation.navigate('GroceryEdit', { grocery: item })
+  const navigateToGroceryEdit = (id: string) => {
+    navigation.navigate('GroceryEdit', { id })
   }
 
   useEffect(() => {
-    if (groceryListTest) {
-      setGroceryList(groceryListTest)
+    if (data) {
+      setGroceryList(data)
       setTimeout(() => {
         setFinalLoading(false)
-      }, 1500)
+      }, 500)
     }
-  }, [groceryListTest])
+  }, [data])
 
   useEffect(() => {
     if (!finalLoading) {
@@ -80,6 +84,13 @@ export const HomeScreen = () => {
     )
   }
 
+  const handleEndReached = () => {
+    if (!isFetching) {
+      setPage(prevPage => prevPage + 1)
+      console.log('Loading next page', page + 1)
+    }
+  }
+
   if (finalLoading) {
     return (
       <View className="w-full flex-1 items-center justify-center">
@@ -91,8 +102,15 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView className="flex-1">
       <Animated.View style={animatedStyle} className="flex-1">
-        <View className="mt-4 flex-1 px-4">
-          <FlashList estimatedItemSize={96} data={groceryList} renderItem={renderItem} />
+        <View className="mt-4 flex-1">
+          <FlashList
+            estimatedItemSize={96}
+            data={groceryList}
+            renderItem={renderItem}
+            onEndReached={handleEndReached}
+            onEndReachedThreshold={0.1}
+            refreshing={isFetching}
+          />
         </View>
 
         <View className="mb-8 px-4">

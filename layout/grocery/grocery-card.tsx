@@ -10,7 +10,7 @@ type GroceryCardProps = {
   isChecked: boolean
   onCheckChange: (id: string, checked: boolean) => void
   item: Grocery
-  onNavigate: (item: Grocery) => void
+  onNavigate: (id: string) => void
 }
 
 export const GroceryCard = ({
@@ -22,8 +22,8 @@ export const GroceryCard = ({
 }: GroceryCardProps) => {
   return (
     <TouchableOpacity
-      className="border-w-1 m-2 flex-row items-center justify-between gap-x-2 rounded border border-outline-700 p-4"
-      onPress={() => onNavigate(item)}
+      className="border-w-1 m-2 mx-4 flex-row items-center justify-between gap-x-2 rounded border border-outline-700 p-4"
+      onPress={() => onNavigate(item.id)}
     >
       <View className="w-[70%] gap-y-2">
         <Text

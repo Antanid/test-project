@@ -113,3 +113,13 @@ export const useUpdateGrocery = () => {
     },
   })
 }
+
+export const useGroceryById = (id: string | undefined) =>
+  useQuery<Grocery, Error>({
+    queryKey: ['grocery', id],
+    queryFn: async () => {
+      const response = await axios.get(`${BASE_URL}/groceries/${id}`)
+      return response.data
+    },
+    enabled: !!id,
+  })

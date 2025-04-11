@@ -1,4 +1,3 @@
-import { Grocery } from '@/hooks/useGroceries'
 import { GroceryEdit } from '@/screens/grocery-edit'
 import { HomeScreen } from '@/screens/home'
 import { NavigationContainer } from '@react-navigation/native'
@@ -24,5 +23,5 @@ export const Routes = () => {
 
 export type StackParamsList = {
   HomeScreen: undefined
-  GroceryEdit: { grocery?: Grocery }
+  GroceryEdit: { id?: string }
 }
