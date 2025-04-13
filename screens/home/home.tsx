@@ -29,6 +29,7 @@ export const HomeScreen = () => {
     hasNextPage,
     isFetchingNextPage,
     refetch,
+    isLoading,
     isRefetching,
   } = useGroceries()
 
@@ -63,21 +64,21 @@ export const HomeScreen = () => {
     if (data) {
       setGroceryList(data?.pages)
     }
-  }, [data])
+  }, [data, isFetching])
 
   useEffect(() => {
-    if (isFetching) {
+    if (isLoading) {
       setFinalLoading(true)
     }
     // Simulate a delay to show loading spinner
     setTimeout(() => {
       setFinalLoading(false)
     }, 500)
-  }, [isFetching])
+  }, [isLoading])
 
   useEffect(() => {
     if (!finalLoading) {
-      opacity.value = withTiming(1, { duration: 300 })
+      opacity.value = withTiming(1, { duration: 500 })
     }
   }, [finalLoading])
 

@@ -3,6 +3,7 @@ import { Grocery } from '@/modules/grocery/types'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
+const PAGE_SIZE = 5
 // Fetch groceries from the server
 const fetchGroceries = async ({
   pageParam,
@@ -20,13 +21,13 @@ const fetchGroceries = async ({
 }
 
 // Hook to fetch groceries data using React Query
-export const useGroceries = (limit: number = 10) => {
+export const useGroceries = (limit = PAGE_SIZE) => {
   return useInfiniteQuery({
     queryKey: ['groceries'],
     queryFn: ({ pageParam }: { pageParam: number }) => fetchGroceries({ pageParam, limit }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
-      if (lastPage.length === 10) {
+      if (lastPage.length === PAGE_SIZE) {
         return pages.length + 1
       }
       return undefined

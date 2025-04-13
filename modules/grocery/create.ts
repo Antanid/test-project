@@ -28,7 +28,7 @@ export const useAddGrocery = () => {
     },
 
     onSettled: () => {
-      queryClient.refetchQueries({ queryKey: ['groceries'] })
+      queryClient.invalidateQueries({ queryKey: ['groceries'] })
     },
   })
 }

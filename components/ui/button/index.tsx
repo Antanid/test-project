@@ -1,4 +1,3 @@
-'use client'
 
 import { createButton } from '@gluestack-ui/button'
 import { PrimitiveIcon, UIIcon } from '@gluestack-ui/icon'
