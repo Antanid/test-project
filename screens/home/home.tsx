@@ -1,12 +1,12 @@
 import { Button } from '@/components/ui/button'
 import { Text } from '@/components/ui/text'
+import { GroceryCard } from '@/layout/grocery'
 import {
   Grocery,
   useDeleteGrocery,
   useGroceries,
   useUpdateGroceryCompleted,
-} from '@/hooks/useGroceries'
-import { GroceryCard } from '@/layout/grocery'
+} from '@/modules/grocery'
 import { StackParamsList } from '@/routes'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -36,7 +36,7 @@ export const HomeScreen = () => {
   const deleteGroceryMutation = useDeleteGrocery()
 
   const [groceryList, setGroceryList] = useState<Grocery[]>([])
-  const [finalLoading, setFinalLoading] = useState(true)
+  const [finalLoading, setFinalLoading] = useState(false)
   const [refreshLoading, setRefreshLoading] = useState(false)
 
   const handleDelete = (id: string) => {
@@ -62,12 +62,18 @@ export const HomeScreen = () => {
   useEffect(() => {
     if (data) {
       setGroceryList(data?.pages)
-      // Simulate a delay to show loading spinner
-      setTimeout(() => {
-        setFinalLoading(false)
-      }, 500)
     }
   }, [data])
+
+  useEffect(() => {
+    if (isFetching) {
+      setFinalLoading(true)
+    }
+    // Simulate a delay to show loading spinner
+    setTimeout(() => {
+      setFinalLoading(false)
+    }, 500)
+  }, [isFetching])
 
   useEffect(() => {
     if (!finalLoading) {

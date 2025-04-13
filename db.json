@@ -2,14 +2,14 @@
   "groceries": [
     {
       "id": "1",
-      "title": "first. 111",
-      "price": "11111",
+      "title": "Saaa",
+      "price": "0",
       "completed": true
     },
     {
       "id": "2",
       "title": "second",
-      "price": "999999",
+      "price": "99",
       "completed": true
     },
     {
@@ -31,12 +31,6 @@
       "completed": true
     },
     {
-      "id": "6",
-      "title": "sixth",
-      "price": "249523121",
-      "completed": false
-    },
-    {
       "id": "7",
       "title": "seventh",
       "price": "732",
@@ -49,142 +43,28 @@
       "completed": false
     },
     {
-      "id": "9",
-      "title": "ninth",
-      "price": "540",
-      "completed": true
-    },
-    {
-      "id": "10",
-      "title": "tenth",
-      "price": "1072",
+      "id": "3c0fd311-3674-4495-ac53-b7c1db843f6d",
+      "title": "Asdasd",
+      "price": "123123",
       "completed": false
     },
     {
-      "id": "11",
-      "title": "eleventh",
-      "price": "1843",
-      "completed": true
-    },
-    {
-      "id": "12",
-      "title": "twelfth",
-      "price": "365",
+      "id": "b6efd034-197d-490d-a4f3-8a036731e233",
+      "title": "Ewe E",
+      "price": "1234",
       "completed": false
     },
     {
-      "id": "13",
-      "title": "thirteenth",
-      "price": "992",
-      "completed": true
-    },
-    {
-      "id": "14",
-      "title": "fourteenth",
-      "price": "2438",
+      "id": "88b90941-f381-4beb-97e3-9c361bf04e65",
+      "title": "123",
+      "price": "12312",
       "completed": false
     },
     {
-      "id": "15",
-      "title": "fifteenth",
-      "price": "647",
-      "completed": true
-    },
-    {
-      "id": "16",
-      "title": "sixteenth",
-      "price": "329",
+      "id": "9f76c5c3-756d-4da3-a8e6-2532e22e2b89",
+      "title": "Test test",
+      "price": "123123",
       "completed": false
-    },
-    {
-      "id": "17",
-      "title": "seventeenth",
-      "price": "2984",
-      "completed": true
-    },
-    {
-      "id": "18",
-      "title": "eighteenth",
-      "price": "2306",
-      "completed": false
-    },
-    {
-      "id": "19",
-      "title": "nineteenth",
-      "price": "1345",
-      "completed": true
-    },
-    {
-      "id": "20",
-      "title": "twentieth",
-      "price": "1599",
-      "completed": false
-    },
-    {
-      "id": "21",
-      "title": "twenty-first",
-      "price": "764",
-      "completed": true
-    },
-    {
-      "id": "22",
-      "title": "twenty-second",
-      "price": "512",
-      "completed": false
-    },
-    {
-      "id": "23",
-      "title": "twenty-third",
-      "price": "849",
-      "completed": true
-    },
-    {
-      "id": "24",
-      "title": "twenty-fourth",
-      "price": "1357",
-      "completed": false
-    },
-    {
-      "id": "25",
-      "title": "twenty-fifth",
-      "price": "2765",
-      "completed": true
-    },
-    {
-      "id": "26",
-      "title": "twenty-sixth",
-      "price": "932",
-      "completed": false
-    },
-    {
-      "id": "27",
-      "title": "twenty-seventh",
-      "price": "1000000",
-      "completed": true
-    },
-    {
-      "id": "28",
-      "title": "twenty-eighth",
-      "price": "678",
-      "completed": false
-    },
-    {
-      "id": "29",
-      "title": "twenty-ninth",
-      "price": "2199",
-      "completed": true
-    },
-    {
-      "id": "30",
-      "title": "thirtieth",
-      "price": "1304",
-      "completed": false
-    },
-    {
-      "id": "3548727a-6057-4a32-b213-fdf941a86cd2",
-      "title": "31",
-      "price": "33311221",
-      "completed": true
     }
   ]
 }

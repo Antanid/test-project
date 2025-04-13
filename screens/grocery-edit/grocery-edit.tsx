@@ -2,7 +2,7 @@ import { FormInput } from '@/components/form'
 import { Header } from '@/components/header'
 import { Button } from '@/components/ui/button'
 import { Text } from '@/components/ui/text'
-import { useAddGrocery, useGroceryById, useUpdateGrocery } from '@/hooks/useGroceries'
+import { useAddGrocery, useGroceryById, useUpdateGrocery } from '@/modules/grocery'
 import { StackParamsList } from '@/routes'
 import { RouteProp, useRoute } from '@react-navigation/core'
 import { useNavigation } from '@react-navigation/native'
@@ -76,12 +76,12 @@ export const GroceryEdit = () => {
         // Update grocery if data exists
         updateGrocery(
           { id: data.id, updatedData: groceryData },
-          { onSuccess: () => navigation.navigate('HomeScreen') },
+          { onSuccess: () => navigation.goBack() },
         )
       } else {
         // Add new grocery if no data
         const newGrocery = { id: UUID.v4(), ...groceryData, completed: false }
-        addGrocery(newGrocery, { onSuccess: () => navigation.navigate('HomeScreen') })
+        addGrocery(newGrocery, { onSuccess: () => navigation.goBack() })
       }
     },
     [data, updateGrocery, addGrocery, navigation],

@@ -24,7 +24,7 @@ export const Header = ({ label, showBackWarning }: HeaderProps) => {
         text1: 'Changes Not Saved',
       })
     }
-    navigation.navigate('HomeScreen')
+    navigation.goBack()
   }
 
   return (

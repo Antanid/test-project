@@ -2,7 +2,7 @@ import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from '@/comp
 import { CheckIcon, Icon, TrashIcon } from '@/components/ui/icon'
 import { Text } from '@/components/ui/text'
 import { cn } from '@/constants/lib/utils'
-import { Grocery } from '@/hooks/useGroceries'
+import { Grocery } from '@/modules/grocery'
 import { TouchableOpacity, View } from 'react-native'
 
 type GroceryCardProps = {
