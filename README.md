@@ -15,3 +15,16 @@ This is an [Expo](https://expo.dev) project created with [`create-gluestack-app`
    ```bash
     npm run json-server
    ```
+
+## 🚀 Features
+
+- ✅ **Grocery CRUD**
+  <br><br>
+- 🌐 **React Query API Integration**
+  <br><br>
+- 🔄 **Optimistic Updates**
+  - Instant UI feedback when adding items
+  - Rollback on failure
+    <br><br>
+- 📱 **Mobile-Ready UI**
+  - Built with Gluestack and NativeWind
