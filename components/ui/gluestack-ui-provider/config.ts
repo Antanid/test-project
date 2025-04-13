@@ -1,4 +1,3 @@
-
 import { vars } from 'nativewind'
 
 export const config = {

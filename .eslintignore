@@ -6,4 +6,3 @@ node_modules
 .expo
 expo-env.d.ts
 package-lock.json
-components/ui

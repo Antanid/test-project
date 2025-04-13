@@ -1,6 +1,4 @@
-
-import { createIcon } from '@gluestack-ui/icon'
-import { IPrimitiveIcon, PrimitiveIcon, Svg } from '@gluestack-ui/icon'
+import { IPrimitiveIcon, PrimitiveIcon, Svg, createIcon } from '@gluestack-ui/icon'
 import { VariantProps } from '@gluestack-ui/nativewind-utils'
 import { tva } from '@gluestack-ui/nativewind-utils/tva'
 import { cssInterop } from 'nativewind'
